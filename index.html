@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ruins</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="assets.js"></script>
+    <script src="engine.js"></script>
+    <script src="ruins.js"></script>
+    <script src="city.js"></script>
+    <script>
+      "use strict";
+
+      document.addEventListener('DOMContentLoaded', function() {
+          if (window.location.hash) {
+              var button = document.getElementById(window.location.hash.slice(1));
+              if (!button) {
+                  return;
+              }
+              var buttons = document.body.getElementsByTagName('button');
+              var breaks = document.body.getElementsByTagName('br');
+              for (var i = 0; i < buttons.length; i++) {
+                  if (buttons[i] !== button) {
+                      buttons[i].remove();
+                  }
+              }
+              for (i = 0; i < breaks.length; i++) {
+                  breaks[i].remove();
+              }
+          }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="menu">
+      <button id="ruins" onclick="Ruins.start();">Ruins</button><br />
+      <button id="city" onclick="City.start();">Welcome to the CITY</button>
+      <p>Click/tap and drag.</p>
+      <p>There is sound.</p>
+    </div>
+  </body>
+</html>
