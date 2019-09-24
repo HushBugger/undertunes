@@ -66,6 +66,7 @@ var FourthRock = Rock.create({
 });
 
 var Ruins = Track.create({
+    title: "Ruins",
     music: 'ruins.mp3',
     background: images.ruins,
 

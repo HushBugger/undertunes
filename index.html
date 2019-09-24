@@ -2,12 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Ruins</title>
+    <title>Undertunes</title>
     <link href="style.css" rel="stylesheet" />
     <script src="assets.js"></script>
     <script src="engine.js"></script>
     <script src="ruins.js"></script>
     <script src="city.js"></script>
+    <script src="home.js"></script>
     <script>
       "use strict";
 
@@ -17,25 +18,42 @@
               if (!button) {
                   return;
               }
+              document.title = button.innerText;
               var buttons = document.body.getElementsByTagName('button');
-              var breaks = document.body.getElementsByTagName('br');
-              for (var i = 0; i < buttons.length; i++) {
+              for (var i = buttons.length - 1; i >= 0; i--) {
                   if (buttons[i] !== button) {
                       buttons[i].remove();
                   }
               }
-              for (i = 0; i < breaks.length; i++) {
+              var breaks = document.body.getElementsByTagName('br');
+              for (i = breaks.length - 1; i >= 0; i--) {
                   breaks[i].remove();
               }
           }
       });
+
+      // messy
+      // document.addEventListener('keydown', function(event) {
+      //     if (event.key === 'Escape') {
+      //         if (currentTrack) {
+      //             if (window.location.hash) {
+      //                 window.location.hash = '';
+      //             }
+      //             window.location.reload();
+      //             // currentTrack.finish();
+      //             // currentTrack = null;
+      //             // document.getElementById('menu').style.display = 'initial';
+      //         }
+      //     }
+      // });
     </script>
   </head>
   <body>
     <div id="menu">
       <button id="ruins" onclick="Ruins.start();">Ruins</button><br />
+      <button id="home" onclick="Home.start();">Home</button><br />
       <button id="city" onclick="City.start();">Welcome to the CITY</button>
-      <p>Click/tap and drag.</p>
+      <p>Use the mouse, or tap.</p>
       <p>There is sound.</p>
     </div>
   </body>

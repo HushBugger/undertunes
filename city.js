@@ -79,6 +79,7 @@ var Dog = Obj.create({
 })
 
 var City = Track.create({
+    title: "Welcome to the CITY",
     music: 'city.mp3',
     background: images.city,
 

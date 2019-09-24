@@ -168,7 +168,9 @@ var Scene = Base.create({
             self.dragX = x;
             self.dragY = y;
             self.dragging.forEach(function(object) {
-                object.drag(diffX, diffY, event, x, y);
+                if (object.drag) {
+                    object.drag(diffX, diffY, event, x, y);
+                }
             });
         }
 
@@ -213,8 +215,15 @@ var Scene = Base.create({
     },
 });
 
+var currentTrack = null;
+
 var Track = Base.create({
     start: function() {
+        if (currentTrack) {
+            currentTrack.finish();
+        }
+        currentTrack = this;
+        document.title = this.title;
         this.player = new Audio('sound/' + this.music);
         this.player.loop = true;
         this.player.play();
@@ -225,5 +234,10 @@ var Track = Base.create({
         this.scene.add(this.backgroundObj);
         this.prepare();
         this.scene.launch();
+    },
+
+    finish: function() {
+        this.player.pause();
+        this.scene.canvas.remove();
     },
 });
